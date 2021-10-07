@@ -1,9 +1,9 @@
 const path = require("path");
-const Videojuego = require("../utils/database").models.videojuego;
+const Consola = require("../utils/database").models.consola;
 
-exports.postAgregarVideojuego = (req, res) => {
+exports.postAgregarConsola = (req, res) => {
   console.log(req.body); //<={id: number,nombre:text}
-  Videojuego.create(req.body)
+  Consola.create(req.body)
     .then((vj) => {
       console.log("Registro Existoso");
       res.json({ estado: "aceptado" });
@@ -14,24 +14,24 @@ exports.postAgregarVideojuego = (req, res) => {
     });
 };
 
-exports.getObtenerVideojuegos = (req, res) => {
-  Videojuego.findAll()
-    .then((videojuegos) => {
-      console.log(videojuegos);
-      res.json(videojuegos);
+exports.getObtenerConsolas = (req, res) => {
+  Consola.findAll()
+    .then((consolas) => {
+      console.log(consolas);
+      res.json(consolas);
     })
     .catch((err) => console.log(err));
 };
 
-exports.postBorrarVideojuego = (req, res) => {
+exports.postBorrarConsola = (req, res) => {
   console.log(req.body);
-  Videojuego.destroy({
+  Consola.destroy({
     where: {
       id: req.body.id,
     },
   })
     .then(() => {
-      console.log("Videojuego eliminado");
+      console.log("Consola eliminado");
       res.json({ estado: "aceptado" });
     })
     .catch((err) => {
@@ -40,9 +40,9 @@ exports.postBorrarVideojuego = (req, res) => {
     });
 };
 
-exports.postActualizarVideojuego = (req, res) => {
+exports.postActualizarConsola = (req, res) => {
   console.log(req.body);
-  Videojuego.update(
+  Consola.update(
     {
       nombre: req.body.nombre,
     },
@@ -53,7 +53,7 @@ exports.postActualizarVideojuego = (req, res) => {
     }
   )
     .then(() => {
-      console.log("Videojuego actualizado");
+      console.log("Consola actualizado");
       res.json({ estado: "aceptado" });
     })
     .catch((err) => {
